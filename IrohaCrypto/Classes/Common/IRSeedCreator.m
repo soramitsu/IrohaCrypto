@@ -32,6 +32,17 @@ static NSString* const WORDS_SEPARATOR = @" ";
 
 #pragma mark - IRSeedCreatorProtocol
 
+- (nullable NSData*)createSaltFromPassword:(nonnull NSString*)password
+                                   project:(nonnull NSString*)project
+                                   purpose:(nonnull NSString*)purpose
+                                     error:(NSError*_Nullable*_Nullable)error {
+    return [IRSeedCreator createSaltFromPassword:password
+                                         project:project
+                                         purpose:purpose
+                                           error:error];
+
+}
+
 - (nullable NSData*)randomSeedWithMnemonicStrength:(IRMnemonicStrength)strength
                                           password:(nonnull NSString*)password
                                            project:(nonnull NSString*)project
@@ -53,6 +64,12 @@ static NSString* const WORDS_SEPARATOR = @" ";
                                          length:seedLength
                                  resultMnemonic:mnemonic
                                           error:error];
+}
+
+- (nullable id<IRMnemonicProtocol>)randomMnemonic:(IRMnemonicStrength)strength
+                                                error:(NSError*_Nullable*_Nullable)error {
+
+    return [_mnemonicCreator randomMnemonic:strength error:error];
 }
 
 - (nullable NSData*)randomSeedWithMnemonicStrength:(IRMnemonicStrength)strength

@@ -11,6 +11,14 @@
 
 @protocol IRSeedCreatorProtocol <NSObject>
 
+- (nullable NSData*)createSaltFromPassword:(nonnull NSString*)password
+                                   project:(nonnull NSString*)project
+                                   purpose:(nonnull NSString*)purpose
+                                     error:(NSError*_Nullable*_Nullable)error;
+
+- (nullable id<IRMnemonicProtocol>)randomMnemonic:(IRMnemonicStrength)strength
+                                                error:(NSError*_Nullable*_Nullable)error;
+
 - (nullable NSData*)randomSeedWithMnemonicStrength:(IRMnemonicStrength)strength
                                           password:(nonnull NSString*)password
                                            project:(nonnull NSString*)project
